@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            document.addEventListener('click', musicPlay);
+            function musicPlay() {
+                document.getElementById('player').play();
+                document.removeEventListener('click', musicPlay);
+            }
+        </script>
+    </head>
+<body>
+    <audio id="myAudio" src="delicia.mp3"></audio>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<input onclick='responsiveVoice.speak("Hello World");' type='button' value='Play' />
+
+
+</body>
+</html>
