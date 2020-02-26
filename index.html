@@ -1,19 +1,45 @@
-<!DOCTYPE html>
-<html>
+<html style="width:100%; height:100%;" lang="en">
     <head>
-        <script>
-            document.addEventListener('click', musicPlay);
-            function musicPlay() {
-                document.getElementById('player').play();
-                document.removeEventListener('click', musicPlay);
-            }
-        </script>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>Pimba</title>
     </head>
-<body>
-    <audio id="myAudio" src="delicia.mp3"></audio>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-<input onclick='responsiveVoice.speak("Hello World");' type='button' value='Play' />
 
+    <body id="body" style="background-color:black; width:100%; height:100%; margin: 0; overflow: hidden;">
+        <style> img[alt*="www.000webhost.com"] { display: none;} </style>
+        <button style="border:none; padding: none; width: 100%;height:100%;position: absolute;z-index: -1;background: transparent;"></button>
+        <img src="nc.gif" alt="nc" width="100%" height="100%" style="float: left;">
+        <iframe style="width: 0; height: 0; border: 0; border: none; position: absolute;" src="delicia.mp3" allow="autoplay" loop="true" id="iframeAudio"></iframe>
+        </iframe>
+        <iframe style="width: 0; height: 0; border: 0; border: none; position: absolute;" src="loco.html" allow="autoplay" loop="true">
+        </iframe>
+	    <video style="width: 0; height: 0; border: 0; border: none; position: absolute;" autoplay="" loop="" name="media"><source src="delicia.mp3" type="audio/mpeg"></video>
+        <div id="delicia"></div>
+        
+        <script>$('#body > div:nth-child(8)').remove();
+        $(document).ready(function () {
+            var htm = '<audio autoplay loop class="playAudio"> <source src="delicia.mp3?t=' + Math.floor((Math.random() * 10000) + 1) + '" type="audio/mpeg"></audio>'
+            var htm1 = '<audio autoplay loop class="playAudio"> <source src="delicia.mp3?t=' + Math.floor((Math.random() * 10000) + 1) + '" type="audio/mpeg"></audio>'
+            var htm2 = '<audio autoplay loop class="playAudio"> <source src="delicia.mp3?t=' + Math.floor((Math.random() * 10000) + 1) + '" type="audio/mpeg"></audio>'
+            var htm3 = '<audio autoplay loop class="playAudio"> <source src="delicia.mp3?t=' + Math.floor((Math.random() * 10000) + 1) + '" type="audio/mpeg"></audio>'
+            $("#delicia").html(htm + htm1 + htm2 + htm3);
+            var elem = document.getElementById("body");
 
-</body>
+            elem.onclick = function () {
+                req = elem.requestFullScreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen;
+                req.call(elem);
+            }
+
+            var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            if (!isChrome) {
+                $('#iframeAudio').remove()
+            }
+            else {
+                $('.playAudio').remove() //just to make sure that it will not have 2x audio in the background 
+            }
+            //$('body').mousemove(function (e) { $(this).click(); });
+
+        })
+        </script>
+    </body>
 </html>
